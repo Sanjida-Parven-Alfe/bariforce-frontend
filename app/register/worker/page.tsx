@@ -1,7 +1,7 @@
 "use client";
 import { useState, ChangeEvent, FormEvent, JSX } from "react";
 import { useRouter } from 'next/navigation';
-import { workerSchema } from '../auth/validation';
+import { workerSchema } from '../../auth/validation';
 
 
 export default function WorkerRegister(): JSX.Element {
