@@ -65,9 +65,9 @@ export default function Home() {
       </section>
       
       <div>
-        <h2>For Workers</h2>
-        <p>Find jobs and grow your career</p>
-        <Link href="/register">Register as Worker</Link>
+        <h2>Join Us</h2>
+        <p>Register to our platform</p>
+        <Link href="/register">Register</Link>
       </div>
       
       <div>
