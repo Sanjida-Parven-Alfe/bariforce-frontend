@@ -26,6 +26,8 @@ export default function RegisterSelection(): JSX.Element {
           <option value="worker">Worker</option>
           <option value="admin">Admin</option>
           <option value="user">User</option>
+          
+
         </select>
       </div>
     </>

@@ -48,3 +48,46 @@ export const adminSchema = z.object({
 });
 
 export type AdminFormData = z.infer<typeof adminSchema>;
+
+export const userSchema = z.object({
+  username: z
+    .string()
+    .min(3, "Username must be at least 3 characters")
+    .regex(
+      /^[a-z0-9_]+$/,
+      "Username must contain only lowercase letters, numbers, and underscores",
+    ),
+  email: z
+    .string()
+    .min(1, "Personal Email is required")
+    .email("Invalid email address"),
+  phone: z
+    .string()
+    .regex(
+      /^(?:\+88|88)?01[3-9]\d{8}$/,
+      "Must be a valid Bangladeshi phone number",
+    ),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  dob: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), {
+      message: "Invalid date format",
+    })
+    .refine(
+      (date) => {
+        const today = new Date();
+        const birthDate = new Date(date);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+        }
+        return age >= 18;
+      },
+      {
+        message: "You must be at least 18 years old",
+      },
+    ),
+});
+
+export type UserFormData = z.infer<typeof userSchema>;
